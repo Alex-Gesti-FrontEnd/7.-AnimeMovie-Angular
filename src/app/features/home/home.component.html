@@ -1,0 +1,12 @@
+<main>
+  <header class="d-flex flex-row"><h1>Anime movies DB</h1></header>
+  <section>
+    @for (movie of movies; track movie.id) {
+    <div>
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}" />
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.vote_average }}</p>
+    </div>
+    }
+  </section>
+</main>
