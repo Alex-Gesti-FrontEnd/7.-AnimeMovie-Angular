@@ -5,7 +5,8 @@ import { MovieDetailComponent } from './features/movie-detail/movie-detail.compo
 export const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: HomeComponent,
   },
-  { path: '', component: MovieDetailComponent },
+  { path: 'movie/:id', component: MovieDetailComponent },
 ];

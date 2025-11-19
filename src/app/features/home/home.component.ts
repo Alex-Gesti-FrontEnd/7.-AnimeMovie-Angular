@@ -1,6 +1,7 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MovieService } from '../../core/services/movies.service';
 import { MovieModel } from '../../core/models/movie.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,12 @@ import { MovieModel } from '../../core/models/movie.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  private readonly movieService = inject(MovieService);
+  private readonly router = inject(Router);
+
   movies: MovieModel[] = [];
 
-  constructor(private movieService: MovieService) {
+  constructor() {
     effect(() => {
       this.movies = this.movieService.movies();
     });
@@ -18,5 +22,9 @@ export class HomeComponent {
 
   ngOnInit() {
     this.movieService.loadMovies();
+  }
+
+  protected goToMovie(id: number): void {
+    this.router.navigate(['/movie', id]);
   }
 }

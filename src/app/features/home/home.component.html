@@ -2,7 +2,7 @@
   <header class="d-flex"><h1>Anime movies DB</h1></header>
   <section class="d-flex flex-row flex-wrap overflow-auto gap-4 py-3">
     @for (movie of movies; track movie.id) {
-    <div class="text-center section-adjusted">
+    <div class="text-center section-adjusted" role="button" (click)="goToMovie(movie.id)">
       <img
         class="img-poster"
         [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
