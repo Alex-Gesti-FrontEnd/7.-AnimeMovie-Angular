@@ -1,11 +1,15 @@
-<main>
-  <header class="d-flex flex-row"><h1>Anime movies DB</h1></header>
-  <section>
+<main class="container-fluid">
+  <header class="d-flex"><h1>Anime movies DB</h1></header>
+  <section class="d-flex flex-row flex-wrap overflow-auto gap-4 py-3">
     @for (movie of movies; track movie.id) {
-    <div>
-      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}" />
-      <h3>{{ movie.title }}</h3>
-      <p>{{ movie.vote_average }}</p>
+    <div class="text-center section-adjusted">
+      <img
+        class="img-poster"
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <h3 class="fs-5 mt-2">{{ movie.title }}</h3>
+      <p class="fw-bold m-0">{{ movie.vote_average }}</p>
     </div>
     }
   </section>
