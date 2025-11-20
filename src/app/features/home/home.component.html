@@ -1,7 +1,11 @@
 <main class="container-fluid">
-  <header class="d-flex"><h1>Anime movies DB</h1></header>
-  <section class="d-flex flex-row flex-wrap overflow-auto gap-4 py-3">
-    @for (movie of movies; track movie.id) {
+  <header class="d-flex flex-column align-items-center my-4">
+    <h1>Anime movies DB</h1>
+  </header>
+  <section
+    class="d-flex flex-row flex-wrap overflow-auto align-items-center justify-content-center gap-4 py-3"
+  >
+    @for (movie of movies(); track movie.id) {
     <div class="text-center section-adjusted" role="button" (click)="goToMovie(movie.id)">
       <img
         class="img-poster"
@@ -13,4 +17,5 @@
     </div>
     }
   </section>
+  <div #scrollSentinel style="height: 40px"></div>
 </main>

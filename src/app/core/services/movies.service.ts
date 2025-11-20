@@ -15,15 +15,35 @@ export class MovieService {
   });
 
   movies = signal<MovieModel[]>([]);
+  currentPage = signal(1);
+  totalPages = signal<number>(1);
+  viewMode = signal<'infinite' | 'paginated'>('infinite');
 
-  loadMovies() {
+  setViewMode(mode: 'infinite' | 'paginated') {
+    this.viewMode.set(mode);
+    this.movies.set([]);
+    this.currentPage.set(1);
+    this.loadPage(1);
+  }
+
+  loadPage(page: number) {
     this.http
-      .get<any>(`${this.apiUrl}/discover/movie?with_keywords=210024&language=en-EN`, {
+      .get<any>(`${this.apiUrl}/discover/movie?with_keywords=210024&language=en-EN&page=${page}`, {
         headers: this.headers,
       })
       .subscribe((res) => {
-        this.movies.set(res.results);
+        if (this.viewMode() === 'paginated') this.movies.set(res.results);
+        else this.movies.update((old) => [...old, ...res.results]);
+        this.currentPage.set(page);
+        this.totalPages.set(res.total_pages);
       });
+  }
+
+  loadMore() {
+    const next = this.currentPage() + 1;
+    if (next <= this.totalPages()) {
+      this.loadPage(next);
+    }
   }
 
   getMovieDetail(id: number) {

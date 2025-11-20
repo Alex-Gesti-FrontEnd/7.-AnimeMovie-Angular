@@ -1,6 +1,5 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { MovieService } from '../../core/services/movies.service';
-import { MovieModel } from '../../core/models/movie.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,19 +11,27 @@ export class HomeComponent {
   private readonly movieService = inject(MovieService);
   private readonly router = inject(Router);
 
-  movies: MovieModel[] = [];
+  movies = this.movieService.movies;
 
   constructor() {
     effect(() => {
-      this.movies = this.movieService.movies();
+      if (this.movies().length === 0) {
+        this.movieService.loadPage(1);
+      }
     });
-  }
-
-  ngOnInit() {
-    this.movieService.loadMovies();
   }
 
   protected goToMovie(id: number): void {
     this.router.navigate(['/movie', id]);
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const threshold = document.body.offsetHeight - 300;
+
+    if (scrollPosition >= threshold) {
+      this.movieService.loadMore();
+    }
   }
 }
