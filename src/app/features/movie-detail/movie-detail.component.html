@@ -1,24 +1,79 @@
 @if (movie()) {
-<section>
+<section class="d-flex flex-column py-4">
   <button
-    class="btn btn-dark btn-lg shadow"
+    class="btn btn-outline-light mb-4 col-2"
     (click)="goToMenu()"
     aria-label="Button to go back to menu"
   >
     Back to menu
   </button>
-  <h1>{{ movie().title }}</h1>
 
-  <p>{{ movie().overview }}</p>
+  <div class="d-flex flex-row g-4">
+    <img
+      class="img-poster"
+      [src]="'https://image.tmdb.org/t/p/w500' + movie().poster_path"
+      alt="{{ movie().title }}"
+    />
 
-  <h2>Cast</h2>
-  <div>
-    @for (actor of cast(); track actor.id) {
-    <div>
-      <img [src]="'https://image.tmdb.org/t/p/w300' + actor.profile_path" alt="{{ actor.name }}" />
-      <p>{{ actor.name }}</p>
+    <div class="col-12 col-md-8 text-white">
+      <h1 class="fw-bold">{{ movie().title }}</h1>
+      <p class="opacity-75 mb-1"><strong>Premiere:</strong> {{ movie().release_date }}</p>
+      <p class="opacity-75 mb-3">
+        <strong>Genre:</strong>
+        @for (g of movie().genres; track g.id) {
+        <span class="badge bg-secondary me-1">{{ g.name }}</span>
+        }
+      </p>
+
+      <div class="d-flex flex-row align-items-center gap-4 mb-4">
+        <div>
+          <h4 class="m-0">{{ movie().vote_average.toFixed(1) }}</h4>
+          <small class="opacity-75">Criticts</small>
+        </div>
+      </div>
+
+      <hr class="border-secondary" />
+
+      <h3 class="fw-bold mt-3">Review</h3>
+      <p class="opacity-75">{{ movie().overview }}</p>
+
+      @if (directors().length > 0 || writers().length > 0) {
+      <div class="mt-4">
+        <h4 class="fw-bold">Creators</h4>
+        @if (directors().length > 0) { @for (d of directors(); track d.id) {
+        <p class="m-0"><strong>Director:</strong> {{ d.name }}</p>
+        } } @if (writers().length > 0) { @for (w of writers(); track w.id) {
+        <p class="m-0">
+          <strong>{{ w.job }}:</strong> {{ w.name }}
+        </p>
+        } }
+      </div>
+      }
     </div>
-    }
+  </div>
+
+  <div class="mt-5 text-white">
+    <h2 class="fw-bold mb-4">Cast</h2>
+
+    <div class="row g-4">
+      @for (actor of cast(); track actor.id) {
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="p-2 bg-dark rounded shadow-sm text-center">
+          <img
+            class="img-actor"
+            [src]="
+              actor.profile_path
+                ? 'https://image.tmdb.org/t/p/w300' + actor.profile_path
+                : 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
+            "
+            alt="{{ actor.name }}"
+          />
+          <p class="fw-bold">{{ actor.name }}</p>
+          <p class="opacity-75">{{ actor.character }}</p>
+        </div>
+      </div>
+      }
+    </div>
   </div>
 </section>
 }
