@@ -27,6 +27,8 @@ export class HomeComponent {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (this.movieService.currentPage() >= this.movieService.totalPages()) return;
+
     const scrollPosition = window.innerHeight + window.scrollY;
     const threshold = document.body.offsetHeight - 300;
 

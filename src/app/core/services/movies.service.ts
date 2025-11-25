@@ -17,14 +17,6 @@ export class MovieService {
   movies = signal<MovieModel[]>([]);
   currentPage = signal(1);
   totalPages = signal<number>(1);
-  viewMode = signal<'infinite' | 'paginated'>('infinite');
-
-  setViewMode(mode: 'infinite' | 'paginated') {
-    this.viewMode.set(mode);
-    this.movies.set([]);
-    this.currentPage.set(1);
-    this.loadPage(1);
-  }
 
   loadPage(page: number) {
     this.http
@@ -32,18 +24,25 @@ export class MovieService {
         headers: this.headers,
       })
       .subscribe((res) => {
-        if (this.viewMode() === 'paginated') this.movies.set(res.results);
-        else this.movies.update((old) => [...old, ...res.results]);
         this.currentPage.set(page);
         this.totalPages.set(res.total_pages);
+
+        const existing = this.movies();
+        const incoming = res.results;
+        const filtered = incoming.filter(
+          (m: MovieModel) => !existing.some((e: MovieModel) => e.id === m.id)
+        );
+
+        this.movies.set([...existing, ...filtered]);
       });
   }
 
   loadMore() {
     const next = this.currentPage() + 1;
-    if (next <= this.totalPages()) {
-      this.loadPage(next);
-    }
+
+    if (next > this.totalPages()) return;
+
+    this.loadPage(next);
   }
 
   getMovieDetail(id: number) {

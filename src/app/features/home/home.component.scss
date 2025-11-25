@@ -1,10 +1,18 @@
-.fade-enter {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 300ms ease, transform 300ms ease;
+.section-adjusted {
+  width: 25vw;
+  height: 50vw;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
-.fade-enter-active {
-  opacity: 1;
-  transform: translateY(0);
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

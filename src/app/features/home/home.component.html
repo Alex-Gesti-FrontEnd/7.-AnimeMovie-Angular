@@ -1,19 +1,26 @@
 <main class="container-fluid">
   <header class="d-flex flex-column align-items-center my-4">
-    <h1>Anime movies DB</h1>
+    <h1 class="header-title">The Anime Movies DB</h1>
   </header>
+
+  <hr class="custom-divider w-100 border-top border-3 border-secondary opacity-25 mx-auto mb-3" />
+
   <section
     class="d-flex flex-row flex-wrap overflow-auto align-items-center justify-content-center gap-4 py-3"
   >
     @for (movie of movies(); track movie.id) {
-    <div class="text-center section-adjusted" role="button" (click)="goToMovie(movie.id)">
+    <div class="text-center section-adjusted my-3" role="button" (click)="goToMovie(movie.id)">
       <img
         class="img-poster"
-        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        [src]="
+          movie.poster_path === null
+            ? 'https://m.media-amazon.com/images/I/21cOE-lrhBL._AC_UF1000,1000_QL80_.jpg'
+            : 'https://image.tmdb.org/t/p/w500' + movie.poster_path
+        "
         alt="{{ movie.title }}"
       />
-      <h3 class="fs-5 mt-2">{{ movie.title }}</h3>
-      <p class="fw-bold m-0">{{ movie.vote_average }}</p>
+      <h3 class="fs-5 mt-2 text-truncate-3">{{ movie.title }}</h3>
+      <p class="fw-bold m-0">&#x2B50; {{ movie.vote_average.toFixed(2) }}</p>
     </div>
     }
   </section>
