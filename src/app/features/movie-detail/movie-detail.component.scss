@@ -1,6 +1,10 @@
+.actors-grid {
+  grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 20vw, 350px), 1fr));
+}
+
 .img-actor {
-  width: 220px;
-  height: 300px;
+  width: 100%;
+  height: clamp(180px, 30vw, 380px);
   border-radius: 8px;
   object-fit: cover;
 }

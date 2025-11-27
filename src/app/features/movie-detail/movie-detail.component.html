@@ -3,7 +3,7 @@
   <header class="d-flex flex-row align-items-center justify-content-between my-1">
     <h1 class="header-title ms-4">The Anime Movies DB</h1>
     <button
-      class="btn btn-outline-light col-2 me-4"
+      class="btn btn-outline-light me-4"
       (click)="goToMenu()"
       aria-label="Button to go back to menu"
     >
@@ -11,7 +11,7 @@
     </button>
   </header>
 
-  <hr class="custom-divider w-100 border-top border-3 border-secondary opacity-25 mx-auto mb-5" />
+  <hr class="w-100 border-top border-3 border-secondary opacity-25 mx-auto mb-5" />
 
   <div class="d-flex flex-row align-items-center justify-content-center mx-2 gap-4">
     <img
@@ -24,7 +24,7 @@
       alt="{{ movie().title }}"
     />
 
-    <div class="col-12 col-md-8 text-white">
+    <div class="text-white">
       <h1 class="fw-bold">{{ movie().title }}</h1>
       <p class="opacity-75 mb-1"><strong>Premiere:</strong> {{ movie().release_date }}</p>
       <p class="opacity-75 mb-3">
@@ -64,22 +64,20 @@
   <div class="mt-5 text-white">
     <h2 class="fw-bold mb-4">Cast</h2>
 
-    <div class="row g-4">
+    <div class="actors-grid d-grid gap-3 justify-items-center">
       @for (actor of cast(); track actor.id) {
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="p-2 bg-dark rounded shadow-sm text-center">
-          <img
-            class="img-actor"
-            [src]="
-              actor.profile_path
-                ? 'https://image.tmdb.org/t/p/w300' + actor.profile_path
-                : 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
-            "
-            alt="{{ actor.name }}"
-          />
-          <p class="fw-bold">{{ actor.name }}</p>
-          <p class="opacity-75">{{ actor.character }}</p>
-        </div>
+      <div class="bg-dark rounded-4 shadow-sm text-center p-4">
+        <img
+          class="img-actor"
+          [src]="
+            actor.profile_path
+              ? 'https://image.tmdb.org/t/p/w300' + actor.profile_path
+              : 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
+          "
+          alt="{{ actor.name }}"
+        />
+        <p class="fw-bold mt-2 mb-1">{{ actor.name }}</p>
+        <p class="opacity-75 my-2">{{ actor.character }}</p>
       </div>
       }
     </div>
