@@ -36,4 +36,8 @@ export class HomeComponent {
       this.movieService.loadMore();
     }
   }
+
+  protected goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
 }
