@@ -9,6 +9,12 @@
   }
 }
 
+.overlay-locked {
+  inset: 0;
+  backdrop-filter: blur(4px);
+  pointer-events: all;
+}
+
 .text-truncate-3 {
   display: -webkit-box;
   line-clamp: 3;

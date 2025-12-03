@@ -1,11 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  Auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from '@angular/fire/auth';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +11,7 @@ import {
 })
 export class LoginComponent {
   private readonly router = inject(Router);
-  private readonly auth: Auth = inject(Auth);
+  private readonly authService = inject(AuthService);
 
   loginEmail = '';
   loginPassword = '';
@@ -25,38 +21,22 @@ export class LoginComponent {
 
   constructor() {}
 
-  protected async onLogin(event: Event): Promise<void> {
+  async onLogin(event: Event) {
     event.preventDefault();
-    console.log('Logging in with', this.loginEmail, this.loginPassword);
-
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        this.auth,
-        this.loginEmail,
-        this.loginPassword
-      );
-      console.log('Login successful:', userCredential);
+      await this.authService.login(this.loginEmail, this.loginPassword);
       this.router.navigate(['/']);
     } catch (error: any) {
-      console.error('Login failed:', error);
       alert(`Login failed: ${error.message}`);
     }
   }
 
-  protected async onRegister(event: Event): Promise<void> {
+  async onRegister(event: Event) {
     event.preventDefault();
-    console.log('Registering with', this.registerEmail, this.registerPassword);
-
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
-        this.registerEmail,
-        this.registerPassword
-      );
-      console.log('Registration successful:', userCredential);
+      await this.authService.register(this.registerEmail, this.registerPassword);
       this.router.navigate(['/']);
     } catch (error: any) {
-      console.error('Registration failed:', error);
       alert(`Registration failed: ${error.message}`);
     }
   }

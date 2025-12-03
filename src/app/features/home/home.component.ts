@@ -1,6 +1,7 @@
 import { Component, effect, HostListener, inject, signal } from '@angular/core';
 import { MovieService } from '../../core/services/movies.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   private readonly movieService = inject(MovieService);
   private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
 
   movies = this.movieService.movies;
 
@@ -27,6 +29,7 @@ export class HomeComponent {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (!this.isLoggedIn) return;
     if (this.movieService.currentPage() >= this.movieService.totalPages()) return;
 
     const scrollPosition = window.innerHeight + window.scrollY;
@@ -39,5 +42,19 @@ export class HomeComponent {
 
   protected goToLogin(): void {
     this.router.navigate(['/login']);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
+  }
+
+  get userName(): string {
+    return this.auth.getUserName();
+  }
+
+  logout(): void {
+    this.auth.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

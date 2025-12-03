@@ -1,6 +1,7 @@
 <main class="container-fluid">
   <header class="d-flex flex-row align-items-center justify-content-between my-4">
     <h1 class="header-title ms-4">The Anime Movies DB</h1>
+    @if (!isLoggedIn) {
     <button
       class="btn btn-outline-light me-4"
       (click)="goToLogin()"
@@ -8,14 +9,29 @@
     >
       Login
     </button>
+    } @if (isLoggedIn) {
+    <div class="d-flex flex-row align-items-center gap-3 me-4">
+      <span class="text-light fw-bold">
+        {{ userName }}
+      </span>
+
+      <button class="btn btn-danger" (click)="logout()" aria-label="logout button">Logout</button>
+    </div>
+    }
   </header>
 
   <hr class="w-100 border-top border-3 border-secondary opacity-25 mx-auto mb-3" />
 
   <section
-    class="d-flex flex-row flex-wrap overflow-auto align-items-center justify-content-center gap-4 py-3"
+    class="d-flex flex-row flex-wrap overflow-auto align-items-center justify-content-center gap-4 py-3 position-relative"
   >
-    @for (movie of movies(); track movie.id) {
+    @if (!isLoggedIn) {
+    <div
+      class="overlay-locked d-flex flex-column justify-content-top align-items-center position-absolute bg-dark bg-opacity-50 z-10"
+    >
+      <h2 class="text-light mb-3 mt-5">Login is required</h2>
+    </div>
+    } @for (movie of movies(); track movie.id) {
     <div class="text-center section-adjusted my-3" role="button" (click)="goToMovie(movie.id)">
       <img
         class="img-poster"
@@ -31,5 +47,6 @@
     </div>
     }
   </section>
+
   <div #scrollSentinel style="height: 40px"></div>
 </main>
