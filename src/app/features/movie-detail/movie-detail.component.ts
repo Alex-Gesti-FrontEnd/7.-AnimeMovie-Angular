@@ -5,6 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-movie-detail',
+  standalone: true,
   imports: [],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.scss',
