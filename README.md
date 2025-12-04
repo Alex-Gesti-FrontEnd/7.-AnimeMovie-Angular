@@ -1,4 +1,4 @@
-# 6.-Pressupostos-Angular
+# 7.-AnimeMovie-Angular
 
 ## 📄 Descripción - Enunciado del ejercicio
 
