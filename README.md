@@ -215,7 +215,7 @@ ng test
 
 ---
 
-## 🖼️ Demo
+## 🖼️ Screenshots
 
 A continuación se mostrará algunas capturas de la aplicación en funcionamiento:
 
@@ -269,6 +269,14 @@ A continuación se mostrará algunas capturas de la aplicación en funcionamient
 <p align="center">
       <img src="src/assets/screen_movie_mobile.png" alt="Demo 1" width="250"/>
 </p>
+
+---
+
+## 🌐 Demo Online
+
+Puedes probar la aplicación directamente en tu navegador, sin necesidad de instalar nada:
+
+[**Abrir Demo**](https://animemoviesdatabase.web.app)
 
 ---
 
