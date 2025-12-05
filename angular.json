@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/7.-AnimeMovie-Angular",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
@@ -28,12 +29,7 @@
               }
             ],
             "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.scss"],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
