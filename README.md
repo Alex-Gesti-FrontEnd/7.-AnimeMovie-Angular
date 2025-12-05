@@ -224,22 +224,22 @@ A continuación se mostrará algunas capturas de la aplicación en funcionamient
   - **_Login_ requerido**
 
       <p align="center">
-      <img src="./docs/screen_homeNoLogin.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_homeNoLogin.png" alt="Demo 1" width="450"/>
     </p>
 
   - **_Login_ realizado**
 
       <p align="center">
-      <img src="./docs/screen_home_1.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_home_1.png" alt="Demo 1" width="450"/>
     </p>
       <p align="center">
-      <img src="./docs/screen_home_2.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_home_2.png" alt="Demo 1" width="450"/>
     </p>
 
 - **Pantalla _Login_**
 
 <p align="center">
-      <img src="./docs/screen_login.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_login.png" alt="Demo 1" width="450"/>
 </p>
 
 - **Pantalla _Pelicula_**
@@ -247,27 +247,27 @@ A continuación se mostrará algunas capturas de la aplicación en funcionamient
   - **Información de la pelicula**
 
     <p align="center">
-      <img src="./docs/screen_movie_1.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_movie_1.png" alt="Demo 1" width="450"/>
   </p>
 
   - **Información del _cast_**
 
     <p align="center">
-      <img src="./docs/screen_movie_2.png" alt="Demo 1" width="450"/>
+      <img src="src/assets/screen_movie_2.png" alt="Demo 1" width="450"/>
   </p>
 
 - **Formato móvil**
 
 <p align="center">
-      <img src="./docs/screen_home_mobile.png" alt="Demo 1" width="250"/>
+      <img src="src/assets/screen_home_mobile.png" alt="Demo 1" width="250"/>
 </p>
 
 <p align="center">
-      <img src="./docs/screen_login_mobile.png" alt="Demo 1" width="250"/>
+      <img src="src/assets/screen_login_mobile.png" alt="Demo 1" width="250"/>
 </p>
 
 <p align="center">
-      <img src="./docs/screen_movie_mobile.png" alt="Demo 1" width="250"/>
+      <img src="src/assets/screen_movie_mobile.png" alt="Demo 1" width="250"/>
 </p>
 
 ---
